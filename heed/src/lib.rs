@@ -63,7 +63,10 @@ pub use {bytemuck, byteorder, heed_types as types};
 
 use self::cursor::{RoCursor, RwCursor};
 pub use self::db::{Database, PolyDatabase};
-pub use self::env::{env_closing_event, CompactionOption, Env, EnvClosingEvent, EnvOpenOptions};
+pub use self::env::{
+    env_closing_event, Checksum, CompactionOption, Encrypt, EncryptDecrypt, Env, EnvClosingEvent,
+    EnvOpenOptions, SimplifiedOpenOptions,
+};
 pub use self::iter::{
     RoIter, RoPrefix, RoRange, RoRevIter, RoRevPrefix, RoRevRange, RwIter, RwPrefix, RwRange,
     RwRevIter, RwRevPrefix, RwRevRange,
@@ -86,9 +89,9 @@ pub enum Error {
     InvalidDatabaseTyping,
     DatabaseClosing,
     BadOpenOptions {
-        /// The options that were used to originaly open this env.
-        options: EnvOpenOptions,
-        /// The env opened with the original options.
+        /// The simplified options that were used to originally open this [`Env`].
+        original_options: SimplifiedOpenOptions,
+        /// The [`Env`] opened with the original options.
         env: Env,
     },
 }
