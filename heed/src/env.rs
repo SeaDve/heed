@@ -264,6 +264,11 @@ impl<E: Encrypt, C: Checksum> EnvOpenOptions<E, C> {
         self
     }
 
+    /// Specifies that the [`Env`] will be encrypted/decrypted with this `F` algorithm,
+    /// with this `key` and the `auth_size` that can be zero.
+    ///
+    /// It is advised to use a checksum algorithm when an encryption/decryption algorithm
+    /// is specified to get better error messages when the encryption key is wrong.
     pub fn encrypt_with<F: Encrypt>(self, key: Vec<u8>, auth_size: u32) -> EnvOpenOptions<F, C> {
         let EnvOpenOptions { checksum, encrypt: _, map_size, max_readers, max_dbs, flags } = self;
         EnvOpenOptions {
@@ -276,6 +281,7 @@ impl<E: Encrypt, C: Checksum> EnvOpenOptions<E, C> {
         }
     }
 
+    /// Specifies that the [`Env`] will be checksum-checked with this `D` algorithm.
     pub fn checksum_with<D: Checksum>(self) -> EnvOpenOptions<E, D> {
         let EnvOpenOptions { checksum: _, encrypt, map_size, max_readers, max_dbs, flags } = self;
         EnvOpenOptions {
