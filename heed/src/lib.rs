@@ -59,13 +59,13 @@ mod txn;
 use std::{error, fmt, io, result};
 
 use heed_traits as traits;
-pub use {bytemuck, byteorder, heed_types as types};
+pub use {aead, bytemuck, byteorder, heed_types as types};
 
 use self::cursor::{RoCursor, RwCursor};
 pub use self::db::{Database, PolyDatabase};
 pub use self::env::{
-    env_closing_event, Checksum, CompactionOption, Encrypt, EncryptDecrypt, Env, EnvClosingEvent,
-    EnvOpenOptions, SimplifiedOpenOptions,
+    env_closing_event, Checksum, CompactionOption, Env, EnvClosingEvent, EnvOpenOptions,
+    SimplifiedOpenOptions,
 };
 pub use self::iter::{
     RoIter, RoPrefix, RoRange, RoRevIter, RoRevPrefix, RoRevRange, RwIter, RwPrefix, RwRange,
