@@ -64,7 +64,7 @@ pub use {aead, bytemuck, byteorder, heed_types as types};
 use self::cursor::{RoCursor, RwCursor};
 pub use self::db::{Database, PolyDatabase};
 pub use self::env::{
-    env_closing_event, Checksum, CompactionOption, Env, EnvClosingEvent, EnvOpenOptions,
+    env_closing_event, CompactionOption, Env, EnvClosingEvent, EnvOpenOptions,
     SimplifiedOpenOptions,
 };
 pub use self::iter::{
